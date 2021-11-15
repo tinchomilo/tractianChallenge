@@ -1,10 +1,13 @@
 const { Router } = require('express');
+const router = Router()
+
 const { getUsers } = require('../controllers/auth');
 
-const router = Router()
 
 
 router.get('/', getUsers)
+
+
 
 
 

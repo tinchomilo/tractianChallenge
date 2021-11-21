@@ -3,13 +3,13 @@ const { Schema, model } = require('mongoose');
 const CompanySchema = Schema({
     name: {
         type: String,
-        required: false
+        required: true,
     },
-    unit: {
-        type: Schema.Types.ObjectId,
-        ref: 'Unit',
-        required: false
-    }
+    // unit: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Unit',
+    //     required: false
+    // }
 },
 { timestamps: true }
 )

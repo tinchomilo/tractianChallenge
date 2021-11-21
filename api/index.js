@@ -14,6 +14,7 @@ app.use( express.json() );
 // rutas
 app.use( '/api/auth', require('./routes/auth'))
 app.use( '/api/assets', require('./routes/assets'))
+app.use( '/api/company', require('./routes/company'))
 
 
 

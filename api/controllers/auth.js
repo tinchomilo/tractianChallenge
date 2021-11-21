@@ -1,5 +1,6 @@
 const { response } = require('express')
 const User = require('../models/User')
+const bcrypt = require('bcrypt');
 
 
 
@@ -15,7 +16,7 @@ const getUsers = ( req, res = response ) => {
 
 const createUser = async ( req, res = response ) => {
 
-    const { name, email, password } = req.body
+    const { email, password } = req.body
     
     try {
 
@@ -31,10 +32,9 @@ const createUser = async ( req, res = response ) => {
         newUser = new User( req.body )
 
         await newUser.save()
-
+        
         res.status(200).json({
             ok: true,
-            msg: 'post para crear user',
             newUser
         })
     } catch (error) {
@@ -42,17 +42,9 @@ const createUser = async ( req, res = response ) => {
         return res.status(500).json({
             ok: false,
             msg: 'contact to the admin'
-        })
-        
+        })        
     }
-
-
-    
-
-
 }
-
-
 
 module.exports = {
     getUsers,

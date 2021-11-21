@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 
+
 const UserSchema = Schema({
     name: {
         type: String,
@@ -17,12 +18,7 @@ const UserSchema = Schema({
     isAdmin: {
         type: Boolean,
         default: false
-    }
-    // company: {
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'Company',
-    //     required: false
-    // }
+    },
 },
 { timestamps: true }
 );

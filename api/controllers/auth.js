@@ -15,17 +15,39 @@ const getUsers = ( req, res = response ) => {
 
 const createUser = async ( req, res = response ) => {
 
-    const { name, email } = req.body
+    const { name, email, password } = req.body
+    
+    try {
 
-    const newUser = new User( req.body )
+        let newUser = await User.findOne({ email })
 
-    await newUser.save()
+        if( newUser ){
+            return res.status(400).json({
+                ok: false,
+                msg: 'There exists an email with that name'
+            })
+        }
+        
+        newUser = new User( req.body )
 
-    res.status(200).json({
-        ok: true,
-        msg: 'post para crear user',
-        name: newUser.name
-    })
+        await newUser.save()
+
+        res.status(200).json({
+            ok: true,
+            msg: 'post para crear user',
+            newUser
+        })
+    } catch (error) {
+        console.log( error )
+        return res.status(500).json({
+            ok: false,
+            msg: 'contact to the admin'
+        })
+        
+    }
+
+
+    
 
 
 }

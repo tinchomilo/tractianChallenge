@@ -29,13 +29,10 @@ const AssetSchema = Schema({
     healthLevel: {
         type: Number,
         min: 0,
-        max: 100
-    },
-    unit: {
-        type: String,
+        max: 100,
         required: true
     },
-    company: {
+    unit: {
         type: String,
         required: true
     }
@@ -43,5 +40,11 @@ const AssetSchema = Schema({
 { timestamps: true }
 
 );
+
+AssetSchema.method('toJSON', function() {
+    const { __v, _id, ...object} = this.toObject();
+    object.id = _id;
+    return object
+})
 
 module.exports = model( 'Asset', AssetSchema )
